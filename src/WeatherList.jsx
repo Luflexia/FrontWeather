@@ -20,7 +20,7 @@ const WeatherList = () => {
     }, []);
 
     const fetchWeathers = () => {
-        axios.get('https://weatherservice-2io2.onrender.com/weather')
+        axios.get('https://weatherservice-upd.onrender.com/weather')
             .then(response => {
                 setWeathers(response.data);
             })
@@ -30,7 +30,7 @@ const WeatherList = () => {
     };
 
     const searchWeathers = () => {
-        axios.get(`http://localhost:8080/weather/city/${searchQuery}`)
+        axios.get(`https://weatherservice-upd.onrender.com/weather/city/${searchQuery}`)
             .then(response => {
                 if (response.status === 200) {
                     setWeathers([response.data]);
@@ -45,7 +45,7 @@ const WeatherList = () => {
     };
 
     const updateWeather = (weather) => {
-        axios.put(`http://localhost:8080/weather/${weather.id}`, weather)
+        axios.put(`https://weatherservice-upd.onrender.com/weather/${weather.id}`, weather)
             .then(response => {
                 setWeathers(weathers.map(w => (w.id === weather.id ? response.data : w)));
                 showNotification('Weather updated successfully', 'success');
@@ -56,7 +56,7 @@ const WeatherList = () => {
     };
 
     const deleteWeather = (id) => {
-        axios.delete(`http://localhost:8080/weather/${id}`)
+        axios.delete(`https://weatherservice-upd.onrender.com/weather/${id}`)
             .then(() => {
                 setWeathers(weathers.filter(weather => weather.id !== id));
                 showNotification('Weather deleted successfully', 'success');
@@ -67,7 +67,7 @@ const WeatherList = () => {
     };
 
     const addWeather = () => {
-        axios.post('http://localhost:8080/weather', newWeather)
+        axios.post('https://weatherservice-upd.onrender.com/weather', newWeather)
             .then(response => {
                 setWeathers([...weathers, response.data]);
                 setNewWeather({
